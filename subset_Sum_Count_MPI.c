@@ -1,11 +1,13 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 #define ROWS 12
-#define COL_PER_NODE 3
 #define SUM 19
 int input[ROWS-2] = {1, 9, 5, 4, 7, 3, 6, 8, 2, 1};
+
+#define COL_PER_NODE 1 // Minimum number of columns per processor
 
 void print(char string[]){
     printf("%s", string);
@@ -24,6 +26,10 @@ void printArray(int* array, int size) {
 }
 
 int main(int argc, char** argv) {
+
+    unsigned long long usec;
+    struct timeval tstart, tend;
+
     int rank, size;
     int COLS = 0;
 
@@ -73,7 +79,8 @@ int main(int argc, char** argv) {
     }
 
 //=============================================EXECUTION=============================================    
-    
+    gettimeofday(&tstart, NULL);
+
     // Row Wise Iteration
     for(i=2; i<ROWS; i++){
         
@@ -135,7 +142,7 @@ int main(int argc, char** argv) {
         free(firstSendBuffer);
         free(secondSendBuffer);
         
-        MPI_Barrier(MPI_COMM_WORLD);
+        // MPI_Barrier(MPI_COMM_WORLD);
 
         // Receive Phase ..........................................................................
         int source_Rank1 = -1;
@@ -171,7 +178,7 @@ int main(int argc, char** argv) {
             MPI_Recv(secondRecieveBuffer, recieveBufferSize2, MPI_INT, source_Rank2, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);   
         } 
         
-	    MPI_Barrier(MPI_COMM_WORLD);
+	    // MPI_Barrier(MPI_COMM_WORLD);
 
         // Compute Phase ...........................................................................
         for(j=0; j<COLS; j++){
@@ -208,24 +215,35 @@ int main(int argc, char** argv) {
     
 //===============================================PRINT===============================================
     
-    MPI_Barrier(MPI_COMM_WORLD);
+    //  MPI_Barrier(MPI_COMM_WORLD);
     
     int answer_Rank = SUM / COLS;
     if(rank == answer_Rank){
         for(j=0; j<COLS; j++){
             // Print Final Answer:
             if(memory[0][j] == SUM){
-             print("\nInput :");
-             printArray(input, ROWS-2);
-             printf("Target Sum: %d\n", SUM);
-             printf("Number of columns used per processor: %d\n", COLS);
-             printf("\nSubset Sum Count: %d\n\n",memory[ROWS-1][j]);
+                print("\nInput :");
+                printArray(input, ROWS-2);
+                printf("Target Sum: %d\n", SUM);
+                printf("Number of columns used per processor: %d\n", COLS);
+                printf("\nSubset Sum Count: %d\n\n",memory[ROWS-1][j]);
+
+                gettimeofday(&tend, NULL);
+
+                if (tend.tv_usec > tstart.tv_usec){
+                    usec = (tend.tv_sec - tstart.tv_sec) * 1000000 + tend.tv_usec - tstart.tv_usec;
+                } 
+                else{
+                    usec = (tend.tv_sec - (tstart.tv_sec + 1)) * 1000000 + (1000000 + tend.tv_usec - tstart.tv_usec);
+                }
+
+                printf( "Finished in %f seconds.\n\n",(double)usec/1000000.0);
             }
         }
     }
       
 
-    MPI_Barrier(MPI_COMM_WORLD);
+    // MPI_Barrier(MPI_COMM_WORLD);
 
     // Print Memory Array:
     // printf("Rank %d Memory Array:\n",rank); 
