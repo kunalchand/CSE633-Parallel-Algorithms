@@ -3,9 +3,12 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-#define ROWS 12
-#define SUM 19
-int input[ROWS-2] = {1, 9, 5, 4, 7, 3, 6, 8, 2, 1};
+#define ROWS 66
+#define SUM 222
+int input[ROWS-2] = {4, 22, 119, 94, 59, 19, 98, 99, 58, 142, 75, 19, 98, 106, 85, 135, 59, 127, 71, 131, 20, 123, 124, 30, 100, 121, 57, 76, 73, 96, 22, 110, 104, 128, 83, 2, 138, 6, 47, 114, 91, 147, 25, 134, 5, 148, 136, 90, 2, 83, 32, 120, 28, 38, 111, 82, 28, 18, 100, 109, 1, 80, 23, 11};
+// Expected Answer (confirmed from GFG): 392813
+// Range of Number of Processors = 1 to 245
+// GFG Sequential Version: https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/#
 
 #define COL_PER_NODE 1 // Minimum number of columns per processor
 
@@ -224,7 +227,7 @@ int main(int argc, char** argv) {
             if(memory[0][j] == SUM){
                 print("\nInput :");
                 printArray(input, ROWS-2);
-                printf("Target Sum: %d\n", SUM);
+                printf("\nTarget Sum: %d\n", SUM);
                 printf("Number of columns used per processor: %d\n", COLS);
                 printf("\nSubset Sum Count: %d\n\n",memory[ROWS-1][j]);
 
