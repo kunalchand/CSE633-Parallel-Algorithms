@@ -225,12 +225,12 @@ int main(int argc, char** argv) {
         for(j=0; j<COLS; j++){
             // Print Final Answer:
             if(memory[0][j] == SUM){
-                print("\nInput :");
-                printArray(input, ROWS-2);
-                printf("\nTarget Sum: %d\n", SUM);
-		printf("\nNumber of processors: %d\n", size);
-                printf("Number of columns used per processor: %d\n", COLS);
-                printf("\nSubset Sum Count: %d\n\n",memory[ROWS-1][j]);
+	            // print("\nInput :");
+                // printArray(input, ROWS-2);
+		        // printf("\nTarget Sum: %d\n", SUM);
+	            // printf("\nNumber of processors: %d\n", size);
+		        // printf("Number of columns used per processor: %d\n", COLS);
+		        // printf("\nSubset Sum Count: %d\n\n",memory[ROWS-1][j]);
 
                 gettimeofday(&tend, NULL);
 
@@ -240,8 +240,8 @@ int main(int argc, char** argv) {
                 else{
                     usec = (tend.tv_sec - (tstart.tv_sec + 1)) * 1000000 + (1000000 + tend.tv_usec - tstart.tv_usec);
                 }
-
-                printf( "Finished in %f seconds.\n\n",(double)usec/1000000.0);
+		        printf("\n%d ", size);
+                printf( "%f",(double)usec/1000000.0);
             }
         }
     }
