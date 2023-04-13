@@ -6,10 +6,10 @@ clear
 rm output.txt
 
 # Loop over the range of input values
-for np in {1..245}
+for np in {1..250}
 do
     # Print the current input value
-    echo "Running script with $np / 3 processes"
+    echo "Running script with $np / 250 processes"
 
     # Execute the original script with the current input value
     output=$(./run.sh <<<"$np" | tail -n 1)

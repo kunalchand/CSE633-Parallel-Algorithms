@@ -4,10 +4,10 @@
 #include <sys/time.h>
 
 #define ROWS 66
-#define SUM 222
+#define SUM 2000
 int input[ROWS-2] = {4, 22, 119, 94, 59, 19, 98, 99, 58, 142, 75, 19, 98, 106, 85, 135, 59, 127, 71, 131, 20, 123, 124, 30, 100, 121, 57, 76, 73, 96, 22, 110, 104, 128, 83, 2, 138, 6, 47, 114, 91, 147, 25, 134, 5, 148, 136, 90, 2, 83, 32, 120, 28, 38, 111, 82, 28, 18, 100, 109, 1, 80, 23, 11};
-// Expected Answer (confirmed from GFG): 392813
-// Range of Number of Processors = 1 to 245
+// Expected Answer (confirmed from GFG): 52221911
+// Range of Number of Processors = 1 to 250
 // GFG Sequential Version: https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/#
 
 #define COL_PER_NODE 1 // Minimum number of columns per processor
