@@ -181,7 +181,7 @@ int main(int argc, char** argv) {
             MPI_Recv(secondRecieveBuffer, recieveBufferSize2, MPI_INT, source_Rank2, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);   
         } 
         
-	    // MPI_Barrier(MPI_COMM_WORLD);
+        // MPI_Barrier(MPI_COMM_WORLD);
 
         // Compute Phase ...........................................................................
         for(j=0; j<COLS; j++){
@@ -228,6 +228,7 @@ int main(int argc, char** argv) {
                 print("\nInput :");
                 printArray(input, ROWS-2);
                 printf("\nTarget Sum: %d\n", SUM);
+		printf("\nNumber of processors: %d\n", size);
                 printf("Number of columns used per processor: %d\n", COLS);
                 printf("\nSubset Sum Count: %d\n\n",memory[ROWS-1][j]);
 
