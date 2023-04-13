@@ -240,7 +240,7 @@ int main(int argc, char** argv) {
                 else{
                     usec = (tend.tv_sec - (tstart.tv_sec + 1)) * 1000000 + (1000000 + tend.tv_usec - tstart.tv_usec);
                 }
-		        printf("\n%d ", size);
+		        printf("\n%d\t", size);
                 printf( "%f",(double)usec/1000000.0);
             }
         }
