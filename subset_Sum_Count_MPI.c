@@ -225,7 +225,7 @@ int main(int argc, char** argv) {
         for(j=0; j<COLS; j++){
             // Print Final Answer:
             if(memory[0][j] == SUM){
-                print("\nInput :");
+                print("\nInput: ");
                 printArray(input, ROWS-2);
                 printf("\nTarget Sum: %d\n", SUM);
 		        printf("\nNumber of rows in each processor: %d\n",ROWS);
