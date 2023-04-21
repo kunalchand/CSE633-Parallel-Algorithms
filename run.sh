@@ -1,8 +1,7 @@
 #!/bin/bash
-module avail intel-mp
-module load intel-mpi/2020.2
-module load intel/17.0
-clear
-mpicc -o myprogram myprogram.c
+
+module load intel
+# clear
+mpicc -o ../classfile/subsetsum ../subsetsum.c
 read -p "Enter the number of processors: " np
-mpirun -np $np ./myprogram
+mpirun -np $np ../classfile/subsetsum
