@@ -19,5 +19,5 @@ export I_MPI_DEBUG=4
 export I_MPI_PMI_LIBRARY=/opt/software/slurm/lib64/libpmi.so
 
 mpicc -o ../classfile/subsetsum ../subsetsum.c
-# mpirun -np 3535 ../classfile/subsetsum
+# mpirun -np 35 ../classfile/subsetsum
 srun -n 35 ../classfile/subsetsum
